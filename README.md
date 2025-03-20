@@ -1,4 +1,5 @@
 ## EX. NO: 1(A) : IMPLEMENTATION OF CAESAR CIPHER
+## Register Number:212223230004
  
 
 ## AIM:
@@ -27,8 +28,56 @@ becomes C. To change a message back, each letter is replaced by the one three be
 ### STEP-5: Display the cipher text obtained above.
 
 
-PROGRAM :-
+## PROGRAM :-
+```
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main() {
+    char plain[100], cipher[100];
+    int key, i, length;
+
+    printf("Enter the plain text: ");
+    scanf("%99s", plain);  // Limit input to 99 characters
+
+    printf("Enter the key value: ");
+    scanf("%d", &key);
+
+    printf("\nPLAIN TEXT: %s", plain);
+    printf("\nENCRYPTED TEXT: ");
+    
+    length = strlen(plain);
+    for (i = 0; i < length; i++) {
+        cipher[i] = plain[i] + key;
+        if (isupper(plain[i]) && cipher[i] > 'Z')
+            cipher[i] -= 26;
+        else if (islower(plain[i]) && cipher[i] > 'z')
+            cipher[i] -= 26;
+        
+        printf("%c", cipher[i]);
+    }
+    
+    cipher[length] = '\0';  // Null-terminate the cipher text
+
+    printf("\nDECRYPTED TEXT: ");
+    for (i = 0; i < length; i++) {
+        plain[i] = cipher[i] - key;
+        if (isupper(cipher[i]) && plain[i] < 'A')
+            plain[i] += 26;
+        else if (islower(cipher[i]) && plain[i] < 'a')
+            plain[i] += 26;
+        
+        printf("%c", plain[i]);
+    }
+
+    printf("\n");
+    return 0;
+}
+```
 
 
 
-OUTPUT :-
+
+## OUTPUT :-
+![image](https://github.com/user-attachments/assets/975b7a12-496c-4453-ad2c-cc4d22f16ac5)
